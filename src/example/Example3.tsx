@@ -3,7 +3,7 @@ import { EffectComposer } from '@react-three/postprocessing';
 import { Fluid } from '../../lib';
 import { ThreeTunnel } from './tunel';
 
-import img from '@/assets/img2.jpg';
+import img from '@/assets/edomex.png';
 
 import Text from './Text';
 
@@ -37,7 +37,7 @@ const Example3 = () => {
                     rainbow={false}
                     blend={0}
                     showBackground={true}
-                    backgroundColor='#a7958b'
+                    backgroundColor='#ac7646'
                     fluidColor='#cfc0a8'
                 />
             </EffectComposer>

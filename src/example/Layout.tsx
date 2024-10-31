@@ -12,9 +12,9 @@ const Layout = () => {
                 
                 <nav className='nav'>
                 
-                    <Link to='/'>DEMO 1</Link>
-                    <Link to='/example2'>DEMO 2</Link>
-                    <Link to='/example3'>DEMO 3</Link>
+                    <Link to='/'>Muestra 1</Link>
+                    <Link to='/example2'>Muestra 2</Link>
+                    <Link to='/example3'>Muestra 3</Link>
                 </nav>
             </div>
 
