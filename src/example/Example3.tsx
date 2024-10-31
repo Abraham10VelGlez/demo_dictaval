@@ -1,5 +1,5 @@
 import { useTexture } from '@react-three/drei';
-import { useFrame,Canvas } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { EffectComposer } from '@react-three/postprocessing';
 import { Fluid } from '../../lib';
 import { ThreeTunnel } from './tunel';

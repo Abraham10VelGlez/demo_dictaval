@@ -1,21 +1,23 @@
-import { useTexture, OrbitControls } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { EffectComposer } from '@react-three/postprocessing';
 import { Fluid } from '../../lib/Fluid';
 import { ThreeTunnel } from './tunel';
 import { Canvas, useFrame } from '@react-three/fiber'
-import React, { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { Suspense } from 'react';
 //import img from '@/assets/24770152_101.png';
 import Text from './Text';
-import { useGLTF, useAnimations } from '@react-three/drei';
+import { useGLTF } from '@react-three/drei';
 
 const Image = () => {
 
 
     const Carbmw = () => {
 
+        const modelRef = useRef<THREE.Object3D>(null);
+
         const { scene } = useGLTF('/scene.gltf');
-        const modelRef = useRef();
+        
 
         // Rota el modelo en cada frame
         useFrame(() => {

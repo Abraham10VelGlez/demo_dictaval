@@ -1,4 +1,4 @@
-import { useFrame } from '@react-three/fiber';
+/*import { useFrame } from '@react-three/fiber';
 import { Group } from 'three';
 import React, { useRef, useEffect } from 'react';
 import { useGLTF, useAnimations, OrbitControls } from '@react-three/drei';
@@ -25,4 +25,4 @@ export default function Scene(props: JSX.IntrinsicElements['group']) {
 
 }
 
-useGLTF.preload('/scene.gltf');
+useGLTF.preload('/scene.gltf');*/
