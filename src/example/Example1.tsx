@@ -1,4 +1,4 @@
-import { useTexture } from '@react-three/drei';
+import { useTexture, OrbitControls } from '@react-three/drei';
 import { EffectComposer } from '@react-three/postprocessing';
 import { Fluid } from '../../lib/Fluid';
 import { ThreeTunnel } from './tunel';
@@ -7,7 +7,7 @@ import React, { useRef, useState } from 'react'
 import { Suspense } from 'react';
 //import img from '@/assets/24770152_101.png';
 import Text from './Text';
-import { useGLTF, useAnimations, OrbitControls } from '@react-three/drei';
+import { useGLTF, useAnimations } from '@react-three/drei';
 
 const Image = () => {
 
@@ -19,7 +19,7 @@ const Image = () => {
 
         // Rota el modelo en cada frame
         useFrame(() => {
-         
+
 
             if (modelRef.current) {
                 modelRef.current.rotation.y += 0.01; // Ajusta la velocidad de rotación
@@ -27,8 +27,11 @@ const Image = () => {
         });
         //rotation={[0, Math.PI / 4, 0]} 
         return (
+            <>
+                <primitive ref={modelRef} position={[0, -1, -6]} object={scene} scale={2} />
+                <OrbitControls />
+            </>
 
-            <primitive ref={modelRef} position={[0, -1, -6]} object={scene} scale={2} />
 
 
         );
@@ -51,15 +54,17 @@ const Image = () => {
 
 const Example1 = () => {
     return (
-        <ThreeTunnel.In>
-            <Text />
-            <Suspense fallback={null}>
+        <Canvas>
+            <ThreeTunnel.In>
+                <Text />
+
                 <Image />
-            </Suspense>
-            <EffectComposer>
-                <Fluid />
-            </EffectComposer>
-        </ThreeTunnel.In>
+
+                <EffectComposer>
+                    <Fluid />
+                </EffectComposer>
+            </ThreeTunnel.In>
+        </Canvas>
     );
 };
 

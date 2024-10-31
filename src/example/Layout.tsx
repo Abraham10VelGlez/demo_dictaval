@@ -18,7 +18,7 @@ const Layout = () => {
                 </nav>
             </div>
 
-            <Canvas />
+            <Canvas/>
             <Outlet />
         </>
     );

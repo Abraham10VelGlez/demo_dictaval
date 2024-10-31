@@ -9,6 +9,12 @@ body {
     font-family: 'ABCNormal-Light';
     background: rgb(0, 0, 0);
     font-size: 1.3rem;
+    
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 a {

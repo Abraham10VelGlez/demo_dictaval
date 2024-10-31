@@ -1,5 +1,5 @@
 import { Environment, MeshTransmissionMaterial } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { useFrame,Canvas } from '@react-three/fiber';
 import { EffectComposer } from '@react-three/postprocessing';
 import { useRef } from 'react';
 import { Mesh } from 'three';
@@ -41,14 +41,16 @@ const Example2 = () => {
     const { ...config } = useConfig();
 
     return (
-        <ThreeTunnel.In>
-            <Text />
-            <Torus />
+        <Canvas>
+            <ThreeTunnel.In>
+                <Text />
+                <Torus />
 
-            <EffectComposer>
-                <Fluid {...config} rainbow={true} />
-            </EffectComposer>
-        </ThreeTunnel.In>
+                <EffectComposer>
+                    <Fluid {...config} rainbow={true} />
+                </EffectComposer>
+            </ThreeTunnel.In>
+        </Canvas>
     );
 };
 
