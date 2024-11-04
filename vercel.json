@@ -1,4 +1,8 @@
 {
+  "build": {
+    "command": "pnpm build",
+    "outputDirectory": "dist"
+  },
   "rewrites": [
     {
       "source": "/(.*)",
