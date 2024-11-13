@@ -1,0 +1,155 @@
+comandos de cmd PARA MONTAR APLICACION DE VITE + PNPM + REACTS + THREEJS
+
+
+npm install -g pnpm
+
+
+pnpm install
+
+
+pnpm run build
+
+
+
+pnpm start
+
+
+
+<VirtualHost *:80>
+    ServerName dictamenmunicipal.edomex.gob.mx
+    ServerAdmin victor.herrera@igecem.gob.mx
+    DocumentRoot "C:/xampp/htdocs/almacenxx"
+    <Directory "C:/xampp/htdocs/almacenxx">
+     Options Indexes FollowSymLinks MultiViews
+     AllowOverride all
+     Order allow,deny
+     allow from all
+    </Directory>
+    ErrorLog "logs/dictamenmunicipal.edomex.gob.mx-error_log"
+    CustomLog "logs/dictamenmunicipal.edomex.gob.mx-access_log" common
+</VirtualHost>
+
+
+
+
+
+
+
+<VirtualHost *:80>
+
+    ServerName dictamenmunicipal.edomex.gob.mx
+    ProxyPreserveHost On
+    ProxyPass /api http://localhost:5173/api
+    ProxyPassReverse /api http://localhost:5173/api
+
+    # Habilita WebSockets
+    ProxyPass /socket.io/ ws://localhost:5173/socket.io/
+    ProxyPassReverse /socket.io/ ws://localhost:5173/socket.io/
+
+    ErrorLog "logs/dictamenmunicipal.edomex.gob.mx-error_log"
+    CustomLog "logs/dictamenmunicipal.edomex.gob.mx-access_log" common
+</VirtualHost>
+
+
+
+
+
+<VirtualHost *:80>
+    ServerName dictamenmunicipal.edomex.gob.mx
+
+    # Activa las configuraciones para WebSockets y proxy
+    ProxyPreserveHost On
+    ProxyRequests Off
+
+    # Redirige todas las solicitudes al servidor de Vite
+    ProxyPass / http://localhost:5173/
+    ProxyPassReverse / http://localhost:5173/
+
+    # Configuración específica para API
+    ProxyPass /api http://localhost:5173/api
+    ProxyPassReverse /api http://localhost:5173/api
+
+    # Habilita WebSockets
+    ProxyPass /socket.io/ ws://localhost:5173/socket.io/
+    ProxyPassReverse /socket.io/ ws://localhost:5173/socket.io/
+
+    # Registra errores y accesos en archivos de log
+    ErrorLog "logs/dictamenmunicipal.edomex.gob.mx-error_log"
+    CustomLog "logs/dictamenmunicipal.edomex.gob.mx-access_log" common
+</VirtualHost>
+
+
+
+
+
+
+
+
+
+
+import * as path from 'path';
+import { defineConfig } from 'vite';
+import { fileURLToPath } from 'node:url';
+import tsConfigPaths from 'vite-tsconfig-paths';
+import react from '@vitejs/plugin-react';
+import glsl from 'vite-plugin-glsl';
+import dts from 'vite-plugin-dts';
+
+export default defineConfig({
+  plugins: [
+    react(),
+    glsl(),
+    dts({ include: 'lib', insertTypesEntry: true }),
+    tsConfigPaths(),
+  ],
+  server: {
+    hmr: {
+      host: 'localhost', // Cambia esto a 'localhost' para desarrollo local
+      port: 5173, // Asegúrate de que este puerto esté libre
+    },
+    host: '0.0.0.0', // Escucha en todas las interfaces
+    port: 5173, // Configura el puerto de desarrollo
+    watch: {
+      usePolling: true, // Si estás en Docker o tienes problemas de cambios en el sistema de archivos
+    },
+  },
+  resolve: {
+    alias: [
+      {
+        find: '@',
+        replacement: fileURLToPath(new URL('./src', import.meta.url)),
+      },
+    ],
+  },
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, 'lib/index.ts'),
+      name: 'reactFluidDistortion',
+      formats: ['es', 'umd'],
+      fileName: (format) => `index.${format}.js`,
+    },
+    rollupOptions: {
+      external: [
+        'react',
+        '@react-three/fiber',
+        '@react-three/drei',
+        'three',
+        'leva',
+        'postprocessing',
+      ],
+      output: {
+        globals: {
+          react: 'React',
+          '@react-three/fiber': 'reactThreeFiber',
+          '@react-three/drei': 'drei',
+          three: 'THREE',
+          leva: 'leva',
+          postprocessing: 'postprocessing',
+        },
+      },
+    },
+    sourcemap: true,
+    emptyOutDir: true,
+    copyPublicDir: false,
+  },
+});
