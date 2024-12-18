@@ -35,7 +35,7 @@ const Text = () => {
                 position-y={-0.12}
                 fontSize={0.50}
                 color='#ffffff'>
-                BIENVENIDOS A LA INNOVACION
+                BIENVENIDOS A LA INNOVACIÓN
             </DreiText>
 
             <DreiText
@@ -46,7 +46,7 @@ const Text = () => {
                 lineHeight={1.5}
                 position-y={-1}
                 color='white'>
-                DEMO HECHO PARA PRUEBAS DE SITIO WEB POR AUTOR ABRAHAM VELAZQUEZ {"\n"}  EN COLABORACION CON {"\n"} {"\n"} Instituto de Información e Investigación Geográfica, Estadística y Catastral del Estado de México IGECEM.{"\n"} {"\n"} 2024
+                DEMO HECHO PARA PRUEBAS DE SITIO WEB POR AUTOR ABRAHAM VELAZQUEZ GONZALEZ {"\n"}  EN COLABORACION CON {"\n"} {"\n"} Instituto de Información e Investigación Geográfica, Estadística y Catastral del Estado de México IGECEM.{"\n"} {"\n"} 2025
             </DreiText>
         </group>
     );
