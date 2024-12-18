@@ -1,6 +1,7 @@
 {
-  "build": {
-    "command": "pnpm build",
+  {
+    /*"build": {
+    "command": "pnpm build",*/
     "outputDirectory": "dist"
   },
   "rewrites": [
